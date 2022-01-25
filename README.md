@@ -12,3 +12,11 @@ kubectl exec -it $(kubectl get pods | awk '/nginx-deployment/{print $1}' | head 
 ```
 
 and see the value of the AWS SecretsManager managed secret output.
+
+to enable rotation of secrets use: (note this will rotate every 60 seconds)
+
+```
+helm upgrade -n kube-system csi-secrets-store secrets-store-csi-driver/secrets-store-csi-driver --set enableSecretRotation=true --set rotationPollInterval=60s
+```
+
+note that this does not work for environment variable mounted secrets
