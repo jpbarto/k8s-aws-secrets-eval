@@ -21,3 +21,5 @@ helm upgrade -n kube-system csi-secrets-store secrets-store-csi-driver/secrets-s
 ```
 
 note that this does not work for environment variable mounted secrets
+
+note that the links above and this code deploys a secrets provider which retrieves secrets from secrets manager and makes them available as files on the container.  The container can reference the mounted secrets so they are synchronized with Kubernetes secrets and are then made available to the container as environment variables.  The Environment Variables however remain static even though the values of the files are rotated.
