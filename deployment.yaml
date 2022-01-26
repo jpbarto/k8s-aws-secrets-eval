@@ -47,3 +47,19 @@ spec:
         - name: secrets-store-inline
           mountPath: /mnt/secrets-store
           readOnly: true
+        env:
+        - name: SECRET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: my-aws-secret
+              key: secret_password
+        - name: SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: my-aws-secret
+              key: secret_access_key
+        - name: SECRET_VERSION
+          valueFrom:
+            secretKeyRef:
+              name: my-aws-secret
+              key: secret_version
